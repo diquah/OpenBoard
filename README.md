@@ -4,7 +4,8 @@
  Easily build clean assessments in the style of the College Board.
 </h3>
 <p align="center">
-  <img width="75%" src="...">
+  <img width="45%" src="https://raw.githubusercontent.com/diquah/OpenBoard/main/Preview/ExamplePage1.png">
+  <img width="45%" src="https://raw.githubusercontent.com/diquah/OpenBoard/main/Preview/ExamplePage2.png">
 </p>
 
 Typst template and framework for creating professional and clean exams of any kind, in the style of College Board exams.
