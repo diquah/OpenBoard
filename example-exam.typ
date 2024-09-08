@@ -10,6 +10,8 @@
   subtitle: "Using OpenBoard and Typst",
   organization: "University of the Internet",
   class: "Typography 101",
+  collect_info: ("Name", "ID"),
+  exam_version: "A",
 )
 
 #instruct[

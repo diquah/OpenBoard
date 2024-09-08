@@ -22,18 +22,40 @@
   doc
 }
 
-#let title(title: "", subtitle: "", organization: "", class: "") = {
+#let title(title: "", subtitle: "", organization: "", class: "", collect_info: (), exam_version: "") = {
   show par: set block(spacing: 0em)
   set text(font: "Roboto Slab", fill: luma(35%))
   [
+    #place(top+right,
+      [
+        #if collect_info.len() > 0 {
+          table(
+            columns: (auto, auto),
+            fill: (luma(50%), white),
+            inset: (x: 0.6em, y: 0.5em),
+            stroke: 1.1pt + luma(50%),
+            ..for info in collect_info {
+              (
+                text(size: 10pt, weight: "bold", fill: luma(95%))[#info],
+                h(10em)
+              )
+            }
+          )
+        }
+        #if exam_version.len() > 0 {
+          block(stroke: 1.5pt + luma(66%), inset: 0.5em)[#text(size: 16pt, weight: "bold", fill: luma(66%))[#exam_version]]
+        }
+      ]
+    )
+    
     *#organization*
     #v(0.75em)
     #class
 
     #v(7em)
     
-    #line(stroke: 4.5pt + luma(75%), length: 66%)
-    #text(size: 22pt, weight: "extrabold")[#title]
+    #line(stroke: 5pt + luma(75%), length: 66%)
+    #text(size: 22pt, weight: "bold")[#title]
     #v(0.85em)
     #text(size: 15pt, weight: "semibold")[#subtitle]
 
@@ -44,12 +66,10 @@
 #let instruct(doc) = {
   set text(font: "Roboto Slab", weight: "regular", size: 11pt, fill: luma(40%))
   show heading: set block(spacing: 2em)
-  show heading: set text(weight: "medium")
   show par: set block(spacing: 2em)
   show list: set list(marker: "—")
   doc
 }
-
 
 #let prompt_counter = counter("prompt_counter")
 #let prompt(allow_overrun: false, doc) = {
@@ -88,14 +108,14 @@
   if reset_question_count {
     prompt_counter.update(0)
   }
-  line(start: (-2mm, 0%), length: 100% + 2mm, stroke: 2.5pt + luma(45%))
+  line(start: (-2mm, 0%), length: 100% + 2mm, stroke: 2.5pt + luma(50%))
   block(above: 0in, inset: (x: -2mm, y:0in),
     table(
       columns: (auto, auto),
       stroke: 0pt,
       inset: 0pt,
       [
-        #block(fill: luma(45%), inset: 3mm, above: 0in,
+        #block(fill: luma(50%), inset: 3mm, above: 0in,
           text(font: "Roboto Slab", size: 12pt, weight: "black", fill: luma(90%))[#head]
         )
       ],
@@ -145,7 +165,7 @@
   ])
 }
 
-#let ruled(lines, s: 7.5mm) = {
+#let ruled(lines, s: 8mm) = {
   v(1.5em)
   for l in range(lines) {
     block(spacing: 0mm, line(length: 100%, stroke: 0.75pt + gray))
