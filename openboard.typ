@@ -22,14 +22,6 @@
   doc
 }
 
-#let instruct(doc) = {
-  set text(font: "Roboto Slab", weight: "regular", size: 11pt, fill: luma(40%))
-  show heading: set block(spacing: 2em)
-  show par: set block(spacing: 2em)
-  show list: set list(marker: "—")
-  doc
-}
-
 #let title(title: "", subtitle: "", organization: "", class: "") = {
   show par: set block(spacing: 0em)
   set text(font: "Roboto Slab", fill: luma(35%))
@@ -40,14 +32,24 @@
 
     #v(7em)
     
-    #line(stroke: 5pt + luma(75%), length: 66%)
-    #text(size: 22pt, weight: "black")[#title]
+    #line(stroke: 4.5pt + luma(75%), length: 66%)
+    #text(size: 22pt, weight: "extrabold")[#title]
     #v(0.85em)
     #text(size: 15pt, weight: "semibold")[#subtitle]
 
     #v(7em)
   ]
 }
+
+#let instruct(doc) = {
+  set text(font: "Roboto Slab", weight: "regular", size: 11pt, fill: luma(40%))
+  show heading: set block(spacing: 2em)
+  show heading: set text(weight: "medium")
+  show par: set block(spacing: 2em)
+  show list: set list(marker: "—")
+  doc
+}
+
 
 #let prompt_counter = counter("prompt_counter")
 #let prompt(allow_overrun: false, doc) = {
@@ -86,14 +88,14 @@
   if reset_question_count {
     prompt_counter.update(0)
   }
-  line(start: (-2mm, 0%), length: 100% + 2mm, stroke: 2.5pt + luma(50%))
+  line(start: (-2mm, 0%), length: 100% + 2mm, stroke: 2.5pt + luma(45%))
   block(above: 0in, inset: (x: -2mm, y:0in),
     table(
       columns: (auto, auto),
       stroke: 0pt,
       inset: 0pt,
       [
-        #block(fill: luma(50%), inset: 3mm, above: 0in,
+        #block(fill: luma(45%), inset: 3mm, above: 0in,
           text(font: "Roboto Slab", size: 12pt, weight: "black", fill: luma(90%))[#head]
         )
       ],
@@ -143,10 +145,10 @@
   ])
 }
 
-#let ruled(lines, s: 8mm) = {
+#let ruled(lines, s: 7.5mm) = {
   v(1.5em)
   for l in range(lines) {
-    line(start: (0%, 0%), length: 100%, stroke: 0.75pt + gray)
-    v(s/2)
+    block(spacing: 0mm, line(length: 100%, stroke: 0.75pt + gray))
+    v(s)
   }
 }
